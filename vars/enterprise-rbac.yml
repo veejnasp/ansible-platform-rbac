@@ -1,0 +1,383 @@
+rbac_config:
+  organization:
+    name: "TechCorp-Industries"
+    description: "Enterprise organization demo managed via ansible.platform collection"
+
+  teams:
+    - name: "Platform-Engineering"
+      description: "Core platform and infrastructure team"
+      organization: "TechCorp-Industries"
+
+    - name: "Security-Team"                                              
+      description: "Security team"                      
+      organization: "TechCorp-Industries" 
+
+    - name: "Application-DevOps"                                               
+      description: "Application Devops team"                                        
+      organization: "TechCorp-Industries"   
+
+  users:
+    - username: "aubrey.trotter"
+      email: "aubrey.trotter@techcorp.com"
+      first_name: "Aubrey"
+      last_name: "Trotter"
+      password: "ChangeMe123!"
+      teams: 
+        - "Platform-Engineering"
+      roles:
+        - role: "Organization Admin"
+          scope: "TechCorp-Industries"
+
+    - username: "nuno.martins"                                                  
+      email: "nuno.martins@techcorp.com"                                        
+      first_name: "Nuno"                                                        
+      last_name: "Martins"                                                      
+      password: "ChangeMe123!"                                                  
+      teams:                                                                    
+        - "Platform-Engineering"                                                
+      roles:                                                                    
+        - role: "Organization Admin"                                            
+          scope: "TechCorp-Industries"   
+
+    - username: "anshul.behl"
+      email: "anshul.behl@techcorp.com" 
+      first_name: "Anshul"
+      last_name: "Behl"
+      password: "ChangeMe123!"
+      teams:
+        - "Security-Team"
+      roles:
+        - role: "Organization Member"
+          scope: "TechCorp-Industries"
+
+    - username: "sean.cavanaugh"
+      email: "sean.cavanaugh@techcorp.com"
+      first_name: "Sean"
+      last_name: "Cavanaugh"
+      password: "ChangeMe123!"
+      teams:
+        - "Application-DevOps"
+      roles:
+        - role: "Organization Admin"
+          scope: "TechCorp-Industries"
+
+    - username: "alex.walcyzk"
+      email: "alex.walcyzk@techcorp.com"
+      first_name: "Alex"
+      last_name: "Walcyzk"
+      password: "ChangeMe123!"
+      teams:
+        - "Application-DevOps"
+      roles:
+        - role: "Organization Member"
+          scope: "TechCorp-Industries"
+
+    - username: "hicham.mourad"
+      email: "hicham.mourad@techcorp.com"
+      first_name: "Hicham"
+      last_name: "Mourad"
+      password: "ChangeMe123!"
+      teams:
+        - "Security-Team"
+      roles:
+        - role: "Organization Admin"
+          scope: "TechCorp-Industries"
+
+    - username: "andrius.benokraitis"
+      email: "andrius.benokraitis@techcorp.com"
+      first_name: "Andrius"
+      last_name: "Benokraitis"
+      password: "ChangeMe123!"
+      teams:
+        - "Platform-Engineering"
+        - "Application-DevOps"
+        - "Security-Team"
+      roles:
+        - role: "Organization Admin"
+          scope: "TechCorp-Industries"
+
+    - username: "jane.smith"
+      email: "jane.smith@techcorp.com"
+      first_name: "Jane"
+      last_name: "Smith"
+      password: "ChangeMe123!"
+      teams:
+        - "Platform-Engineering"
+      roles:
+        - role: "Organization Member"
+          scope: "TechCorp-Industries"
+
+    - username: "michael.brown"
+      email: "michael.brown@techcorp.com"
+      first_name: "Michael"
+      last_name: "Brown"
+      password: "ChangeMe123!"
+      teams:
+        - "Platform-Engineering"
+      roles:
+        - role: "Organization Admin"
+          scope: "TechCorp-Industries"
+
+    - username: "emma.jones"
+      email: "emma.jones@techcorp.com"
+      first_name: "Emma"
+      last_name: "Jones"
+      password: "ChangeMe123!"
+      teams:
+        - "Platform-Engineering"
+      roles:
+        - role: "Organization Member"
+          scope: "TechCorp-Industries"
+
+    - username: "liam.taylor"
+      email: "liam.taylor@techcorp.com"
+      first_name: "Liam"
+      last_name: "Taylor"
+      password: "ChangeMe123!"
+      teams:
+        - "Platform-Engineering"
+      roles:
+        - role: "Organization Member"
+          scope: "TechCorp-Industries"
+
+    - username: "olivia.miller"
+      email: "olivia.miller@techcorp.com"
+      first_name: "Olivia"
+      last_name: "Miller"
+      password: "ChangeMe123!"
+      teams:
+        - "Platform-Engineering"
+      roles:
+        - role: "Organization Admin"
+          scope: "TechCorp-Industries"
+
+    - username: "ethan.davis"
+      email: "ethan.davis@techcorp.com"
+      first_name: "Ethan"
+      last_name: "Davis"
+      password: "ChangeMe123!"
+      teams:
+        - "Platform-Engineering"
+      roles:
+        - role: "Organization Member"
+          scope: "TechCorp-Industries"
+
+    - username: "sophia.wilson"
+      email: "sophia.wilson@techcorp.com"
+      first_name: "Sophia"
+      last_name: "Wilson"
+      password: "ChangeMe123!"
+      teams:
+        - "Platform-Engineering"
+      roles:
+        - role: "Organization Member"
+          scope: "TechCorp-Industries"
+
+    - username: "noah.moore"
+      email: "noah.moore@techcorp.com"
+      first_name: "Noah"
+      last_name: "Moore"
+      password: "ChangeMe123!"
+      teams:
+        - "Platform-Engineering"
+      roles:
+        - role: "Organization Admin"
+          scope: "TechCorp-Industries"
+
+    - username: "ava.clark"
+      email: "ava.clark@techcorp.com"
+      first_name: "Ava"
+      last_name: "Clark"
+      password: "ChangeMe123!"
+      teams:
+        - "Platform-Engineering"
+      roles:
+        - role: "Organization Member"
+          scope: "TechCorp-Industries"
+
+    - username: "william.johnson"
+      email: "william.johnson@techcorp.com"
+      first_name: "William"
+      last_name: "Johnson"
+      password: "ChangeMe123!"
+      teams:
+        - "Security-Team"
+      roles:
+        - role: "Organization Member"
+          scope: "TechCorp-Industries"
+
+    - username: "isabella.lewis"
+      email: "isabella.lewis@techcorp.com"
+      first_name: "Isabella"
+      last_name: "Lewis"
+      password: "ChangeMe123!"
+      teams:
+        - "Security-Team"
+      roles:
+        - role: "Organization Admin"
+          scope: "TechCorp-Industries"
+
+    - username: "james.walker"
+      email: "james.walker@techcorp.com"
+      first_name: "James"
+      last_name: "Walker"
+      password: "ChangeMe123!"
+      teams:
+        - "Security-Team"
+      roles:
+        - role: "Organization Member"
+          scope: "TechCorp-Industries"
+
+    - username: "mia.hall"
+      email: "mia.hall@techcorp.com"
+      first_name: "Mia"
+      last_name: "Hall"
+      password: "ChangeMe123!"
+      teams:
+        - "Security-Team"
+      roles:
+        - role: "Organization Member"
+          scope: "TechCorp-Industries"
+
+    - username: "benjamin.allen"
+      email: "benjamin.allen@techcorp.com"
+      first_name: "Benjamin"
+      last_name: "Allen"
+      password: "ChangeMe123!"
+      teams:
+        - "Security-Team"
+      roles:
+        - role: "Organization Admin"
+          scope: "TechCorp-Industries"
+
+    - username: "amelia.young"
+      email: "amelia.young@techcorp.com"
+      first_name: "Amelia"
+      last_name: "Young"
+      password: "ChangeMe123!"
+      teams:
+        - "Security-Team"
+      roles:
+        - role: "Organization Member"
+          scope: "TechCorp-Industries"
+
+    - username: "lucas.king"
+      email: "lucas.king@techcorp.com"
+      first_name: "Lucas"
+      last_name: "King"
+      password: "ChangeMe123!"
+      teams:
+        - "Security-Team"
+      roles:
+        - role: "Organization Member"
+          scope: "TechCorp-Industries"
+
+    - username: "charlotte.scott"
+      email: "charlotte.scott@techcorp.com"
+      first_name: "Charlotte"
+      last_name: "Scott"
+      password: "ChangeMe123!"
+      teams:
+        - "Security-Team"
+      roles:
+        - role: "Organization Admin"
+          scope: "TechCorp-Industries"
+
+    - username: "henry.green"
+      email: "henry.green@techcorp.com"
+      first_name: "Henry"
+      last_name: "Green"
+      password: "ChangeMe123!"
+      teams:
+        - "Application-DevOps"
+      roles:
+        - role: "Organization Member"
+          scope: "TechCorp-Industries"
+
+    - username: "ella.baker"
+      email: "ella.baker@techcorp.com"
+      first_name: "Ella"
+      last_name: "Baker"
+      password: "ChangeMe123!"
+      teams:
+        - "Application-DevOps"
+      roles:
+        - role: "Organization Admin"
+          scope: "TechCorp-Industries"
+
+    - username: "daniel.harris"
+      email: "daniel.harris@techcorp.com"
+      first_name: "Daniel"
+      last_name: "Harris"
+      password: "ChangeMe123!"
+      teams:
+        - "Application-DevOps"
+      roles:
+        - role: "Organization Member"
+          scope: "TechCorp-Industries"
+
+    - username: "grace.adams"
+      email: "grace.adams@techcorp.com"
+      first_name: "Grace"
+      last_name: "Adams"
+      password: "ChangeMe123!"
+      teams:
+        - "Application-DevOps"
+      roles:
+        - role: "Organization Member"
+          scope: "TechCorp-Industries"
+
+    - username: "jack.evans"
+      email: "jack.evans@techcorp.com"
+      first_name: "Jack"
+      last_name: "Evans"
+      password: "ChangeMe123!"
+      teams:
+        - "Application-DevOps"
+      roles:
+        - role: "Organization Admin"
+          scope: "TechCorp-Industries"
+
+    - username: "harper.turner"
+      email: "harper.turner@techcorp.com"
+      first_name: "Harper"
+      last_name: "Turner"
+      password: "ChangeMe123!"
+      teams:
+        - "Application-DevOps"
+      roles:
+        - role: "Organization Member"
+          scope: "TechCorp-Industries"
+
+    - username: "sebastian.collins"
+      email: "sebastian.collins@techcorp.com"
+      first_name: "Sebastian"
+      last_name: "Collins"
+      password: "ChangeMe123!"
+      teams:
+        - "Application-DevOps"
+      roles:
+        - role: "Organization Member"
+          scope: "TechCorp-Industries"
+
+    - username: "zoe.stewart"
+      email: "zoe.stewart@techcorp.com"
+      first_name: "Zoe"
+      last_name: "Stewart"
+      password: "ChangeMe123!"
+      teams:
+        - "Application-DevOps"
+      roles:
+        - role: "Organization Admin"
+          scope: "TechCorp-Industries"
+
+    - username: "matthew.morris"
+      email: "matthew.morris@techcorp.com"
+      first_name: "Matthew"
+      last_name: "Morris"
+      password: "ChangeMe123!"
+      teams:
+        - "Application-DevOps"
+      roles:
+        - role: "Organization Member"
+          scope: "TechCorp-Industries"
