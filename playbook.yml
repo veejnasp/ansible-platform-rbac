@@ -32,6 +32,12 @@
         | default(true)
         | bool
       }}
+    rbac_default_password: >-
+      {{
+        (aap_user_password | default('', true) | trim)
+        or
+        (lookup('env', 'RBAC_DEFAULT_PASSWORD') | default('', true) | trim)
+      }}
 
   tasks:
     - name: "Validate AAP connection settings"
@@ -66,10 +72,21 @@
         aap_validate_certs: "{{ controller_validate_certs }}"
       loop: "{{ rbac_config.teams | default([]) }}"
 
+    - name: "Validate user passwords are provided"
+      ansible.builtin.assert:
+        that:
+          - (item.password | default(rbac_default_password, true) | string | trim | length) > 0
+        fail_msg: >-
+          Password not provided for user {{ item.username }}.
+          Set per-user password in vars file, or provide aap_user_password extra var,
+          or set RBAC_DEFAULT_PASSWORD environment variable.
+      loop: "{{ rbac_config.users | default([]) }}"
+      no_log: true
+
     - name: "Create User"
       ansible.platform.user:
         username: "{{ item.username }}"
-        password: "{{ item.password }}"
+        password: "{{ item.password | default(rbac_default_password, true) }}"
         email: "{{ item.email }}"
         first_name: "{{ item.first_name }}"
         last_name: "{{ item.last_name }}"
@@ -80,6 +97,7 @@
         aap_validate_certs: "{{ controller_validate_certs }}"
       loop: "{{ rbac_config.users | default([]) }}"
       register: users_results
+      no_log: true
 
     - name: "Assign User to Team"
       ansible.platform.role_user_assignment:

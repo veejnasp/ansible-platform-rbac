@@ -21,7 +21,7 @@ rbac_config:
       email: "aubrey.trotter@techcorp.com"
       first_name: "Aubrey"
       last_name: "Trotter"
-      password: "ChangeMe123!"
+      password: "{{ rbac_default_password }}"
       teams: 
         - "Platform-Engineering"
       roles:
@@ -32,7 +32,7 @@ rbac_config:
       email: "nuno.martins@techcorp.com"                                        
       first_name: "Nuno"                                                        
       last_name: "Martins"                                                      
-      password: "ChangeMe123!"                                                  
+      password: "{{ rbac_default_password }}"                                                  
       teams:                                                                    
         - "Platform-Engineering"                                                
       roles:                                                                    
@@ -43,7 +43,7 @@ rbac_config:
       email: "anshul.behl@techcorp.com" 
       first_name: "Anshul"
       last_name: "Behl"
-      password: "ChangeMe123!"
+      password: "{{ rbac_default_password }}"
       teams:
         - "Security-Team"
       roles:
@@ -54,7 +54,7 @@ rbac_config:
       email: "sean.cavanaugh@techcorp.com"
       first_name: "Sean"
       last_name: "Cavanaugh"
-      password: "ChangeMe123!"
+      password: "{{ rbac_default_password }}"
       teams:
         - "Application-DevOps"
       roles:
@@ -65,7 +65,7 @@ rbac_config:
       email: "alex.walcyzk@techcorp.com"
       first_name: "Alex"
       last_name: "Walcyzk"
-      password: "ChangeMe123!"
+      password: "{{ rbac_default_password }}"
       teams:
         - "Application-DevOps"
       roles:
@@ -76,7 +76,7 @@ rbac_config:
       email: "hicham.mourad@techcorp.com"
       first_name: "Hicham"
       last_name: "Mourad"
-      password: "ChangeMe123!"
+      password: "{{ rbac_default_password }}"
       teams:
         - "Security-Team"
       roles:
@@ -87,7 +87,7 @@ rbac_config:
       email: "andrius.benokraitis@techcorp.com"
       first_name: "Andrius"
       last_name: "Benokraitis"
-      password: "ChangeMe123!"
+      password: "{{ rbac_default_password }}"
       teams:
         - "Platform-Engineering"
         - "Application-DevOps"
@@ -100,7 +100,7 @@ rbac_config:
       email: "jane.smith@techcorp.com"
       first_name: "Jane"
       last_name: "Smith"
-      password: "ChangeMe123!"
+      password: "{{ rbac_default_password }}"
       teams:
         - "Platform-Engineering"
       roles:
@@ -111,7 +111,7 @@ rbac_config:
       email: "michael.brown@techcorp.com"
       first_name: "Michael"
       last_name: "Brown"
-      password: "ChangeMe123!"
+      password: "{{ rbac_default_password }}"
       teams:
         - "Platform-Engineering"
       roles:
@@ -122,7 +122,7 @@ rbac_config:
       email: "emma.jones@techcorp.com"
       first_name: "Emma"
       last_name: "Jones"
-      password: "ChangeMe123!"
+      password: "{{ rbac_default_password }}"
       teams:
         - "Platform-Engineering"
       roles:
@@ -133,7 +133,7 @@ rbac_config:
       email: "liam.taylor@techcorp.com"
       first_name: "Liam"
       last_name: "Taylor"
-      password: "ChangeMe123!"
+      password: "{{ rbac_default_password }}"
       teams:
         - "Platform-Engineering"
       roles:
@@ -144,7 +144,7 @@ rbac_config:
       email: "olivia.miller@techcorp.com"
       first_name: "Olivia"
       last_name: "Miller"
-      password: "ChangeMe123!"
+      password: "{{ rbac_default_password }}"
       teams:
         - "Platform-Engineering"
       roles:
@@ -155,7 +155,7 @@ rbac_config:
       email: "ethan.davis@techcorp.com"
       first_name: "Ethan"
       last_name: "Davis"
-      password: "ChangeMe123!"
+      password: "{{ rbac_default_password }}"
       teams:
         - "Platform-Engineering"
       roles:
@@ -166,7 +166,7 @@ rbac_config:
       email: "sophia.wilson@techcorp.com"
       first_name: "Sophia"
       last_name: "Wilson"
-      password: "ChangeMe123!"
+      password: "{{ rbac_default_password }}"
       teams:
         - "Platform-Engineering"
       roles:
@@ -177,7 +177,7 @@ rbac_config:
       email: "noah.moore@techcorp.com"
       first_name: "Noah"
       last_name: "Moore"
-      password: "ChangeMe123!"
+      password: "{{ rbac_default_password }}"
       teams:
         - "Platform-Engineering"
       roles:
@@ -188,7 +188,7 @@ rbac_config:
       email: "ava.clark@techcorp.com"
       first_name: "Ava"
       last_name: "Clark"
-      password: "ChangeMe123!"
+      password: "{{ rbac_default_password }}"
       teams:
         - "Platform-Engineering"
       roles:
@@ -199,7 +199,7 @@ rbac_config:
       email: "william.johnson@techcorp.com"
       first_name: "William"
       last_name: "Johnson"
-      password: "ChangeMe123!"
+      password: "{{ rbac_default_password }}"
       teams:
         - "Security-Team"
       roles:
@@ -210,7 +210,7 @@ rbac_config:
       email: "isabella.lewis@techcorp.com"
       first_name: "Isabella"
       last_name: "Lewis"
-      password: "ChangeMe123!"
+      password: "{{ rbac_default_password }}"
       teams:
         - "Security-Team"
       roles:
@@ -221,7 +221,7 @@ rbac_config:
       email: "james.walker@techcorp.com"
       first_name: "James"
       last_name: "Walker"
-      password: "ChangeMe123!"
+      password: "{{ rbac_default_password }}"
       teams:
         - "Security-Team"
       roles:
@@ -232,7 +232,7 @@ rbac_config:
       email: "mia.hall@techcorp.com"
       first_name: "Mia"
       last_name: "Hall"
-      password: "ChangeMe123!"
+      password: "{{ rbac_default_password }}"
       teams:
         - "Security-Team"
       roles:
@@ -243,7 +243,7 @@ rbac_config:
       email: "benjamin.allen@techcorp.com"
       first_name: "Benjamin"
       last_name: "Allen"
-      password: "ChangeMe123!"
+      password: "{{ rbac_default_password }}"
       teams:
         - "Security-Team"
       roles:
@@ -254,7 +254,7 @@ rbac_config:
       email: "amelia.young@techcorp.com"
       first_name: "Amelia"
       last_name: "Young"
-      password: "ChangeMe123!"
+      password: "{{ rbac_default_password }}"
       teams:
         - "Security-Team"
       roles:
@@ -265,7 +265,7 @@ rbac_config:
       email: "lucas.king@techcorp.com"
       first_name: "Lucas"
       last_name: "King"
-      password: "ChangeMe123!"
+      password: "{{ rbac_default_password }}"
       teams:
         - "Security-Team"
       roles:
@@ -276,7 +276,7 @@ rbac_config:
       email: "charlotte.scott@techcorp.com"
       first_name: "Charlotte"
       last_name: "Scott"
-      password: "ChangeMe123!"
+      password: "{{ rbac_default_password }}"
       teams:
         - "Security-Team"
       roles:
@@ -287,7 +287,7 @@ rbac_config:
       email: "henry.green@techcorp.com"
       first_name: "Henry"
       last_name: "Green"
-      password: "ChangeMe123!"
+      password: "{{ rbac_default_password }}"
       teams:
         - "Application-DevOps"
       roles:
@@ -298,7 +298,7 @@ rbac_config:
       email: "ella.baker@techcorp.com"
       first_name: "Ella"
       last_name: "Baker"
-      password: "ChangeMe123!"
+      password: "{{ rbac_default_password }}"
       teams:
         - "Application-DevOps"
       roles:
@@ -309,7 +309,7 @@ rbac_config:
       email: "daniel.harris@techcorp.com"
       first_name: "Daniel"
       last_name: "Harris"
-      password: "ChangeMe123!"
+      password: "{{ rbac_default_password }}"
       teams:
         - "Application-DevOps"
       roles:
@@ -320,7 +320,7 @@ rbac_config:
       email: "grace.adams@techcorp.com"
       first_name: "Grace"
       last_name: "Adams"
-      password: "ChangeMe123!"
+      password: "{{ rbac_default_password }}"
       teams:
         - "Application-DevOps"
       roles:
@@ -331,7 +331,7 @@ rbac_config:
       email: "jack.evans@techcorp.com"
       first_name: "Jack"
       last_name: "Evans"
-      password: "ChangeMe123!"
+      password: "{{ rbac_default_password }}"
       teams:
         - "Application-DevOps"
       roles:
@@ -342,7 +342,7 @@ rbac_config:
       email: "harper.turner@techcorp.com"
       first_name: "Harper"
       last_name: "Turner"
-      password: "ChangeMe123!"
+      password: "{{ rbac_default_password }}"
       teams:
         - "Application-DevOps"
       roles:
@@ -353,7 +353,7 @@ rbac_config:
       email: "sebastian.collins@techcorp.com"
       first_name: "Sebastian"
       last_name: "Collins"
-      password: "ChangeMe123!"
+      password: "{{ rbac_default_password }}"
       teams:
         - "Application-DevOps"
       roles:
@@ -364,7 +364,7 @@ rbac_config:
       email: "zoe.stewart@techcorp.com"
       first_name: "Zoe"
       last_name: "Stewart"
-      password: "ChangeMe123!"
+      password: "{{ rbac_default_password }}"
       teams:
         - "Application-DevOps"
       roles:
@@ -375,7 +375,7 @@ rbac_config:
       email: "matthew.morris@techcorp.com"
       first_name: "Matthew"
       last_name: "Morris"
-      password: "ChangeMe123!"
+      password: "{{ rbac_default_password }}"
       teams:
         - "Application-DevOps"
       roles:
