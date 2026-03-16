@@ -381,3 +381,13 @@ rbac_config:
       roles:
         - role: "Organization Member"
           scope: "TechCorp-Industries"
+
+  team_resource_roles:
+    - team: "Platform-Engineering"
+      permissions:
+        - resource_name: "Add User Template with manager email"
+          role: "JobTemplate Execute"
+        - resource_name: "Password Reset Template"
+          role: "JobTemplate Execute"
+        - resource_name: "Remove User Template"
+          role: "JobTemplate Execute"

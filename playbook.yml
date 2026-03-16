@@ -91,7 +91,7 @@
         first_name: "{{ item.first_name }}"
         last_name: "{{ item.last_name }}"
         is_superuser: false
-        state: present
+        state: absent
         aap_hostname: "{{ controller_hostname }}"
         aap_token: "{{ controller_token }}"
         aap_validate_certs: "{{ controller_validate_certs }}"
@@ -104,7 +104,7 @@
         role_definition: "Team Member"
         user: "{{ item.username }}"
         object_ids: "{{ item.teams | default([]) }}"
-        state: present
+        state: absent
         aap_hostname: "{{ controller_hostname }}"
         aap_token: "{{ controller_token }}"
         aap_validate_certs: "{{ controller_validate_certs }}"
@@ -116,8 +116,20 @@
         user: "{{ item.0.username }}"
         object_ids:
           - "{{ item.1.scope }}"
-        state: present
+        state: absent
         aap_hostname: "{{ controller_hostname }}"
         aap_token: "{{ controller_token }}"
         aap_validate_certs: "{{ controller_validate_certs }}"
       loop: "{{ rbac_config.users | default([]) | subelements('roles', skip_missing=True) }}"
+
+    - name: "Assign team roles on job templates"
+      ansible.platform.role_team_assignment:
+        role_definition: "{{ item.1.role }}"
+        team: "{{ item.0.team }}"
+        object_ids:
+          - "{{ item.1.resource_name }}"
+        state: present
+        aap_hostname: "{{ controller_hostname }}"
+        aap_token: "{{ controller_token }}"
+        aap_validate_certs: "{{ controller_validate_certs }}"
+      loop: "{{ rbac_config.team_resource_roles | default([]) | subelements('permissions', skip_missing=True) }}"
