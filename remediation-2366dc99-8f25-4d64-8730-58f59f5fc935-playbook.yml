@@ -14,7 +14,10 @@
 # Identifier: (patch-advisory:RHBA-2026:4449,fix)
 # Version: unknown
 - name: update packages
-  hosts: "aapsv7.qcorpaa.aa.com"
+  # hosts: "aapsv7.qcorpaa.aa.com"
+  hosts: "{{ target | lower }}"
+  ignore_unreachable: true
+  any_errors_fatal: true
   vars:
     insights_issues: "--advisory RHBA-2026:4449"
     requires_reboot: "false"
