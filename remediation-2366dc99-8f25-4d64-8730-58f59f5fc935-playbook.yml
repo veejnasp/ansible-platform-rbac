@@ -61,7 +61,10 @@
         insights_needs_reboot: "{{requires_reboot}}"
 
 - name: run insights
-  hosts: "aapsv7.qcorpaa.aa.com"
+  # hosts: "aapsv7.qcorpaa.aa.com"
+  hosts: "{{ target | lower }}"
+  ignore_unreachable: true
+  any_errors_fatal: true
   become: true
   gather_facts: false
   vars:
