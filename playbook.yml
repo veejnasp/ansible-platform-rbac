@@ -126,7 +126,7 @@
       ansible.platform.role_team_assignment:
         role_definition: "{{ item.1.role }}"
         team: "{{ item.0.team }}"
-        object_ids:
+        assignment_objects:
           - "{{ item.1.resource_name }}"
         state: present
         aap_hostname: "{{ controller_hostname }}"
