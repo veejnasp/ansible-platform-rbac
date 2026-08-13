@@ -136,9 +136,13 @@
     - name: Query job templates by name
       ansible.builtin.uri:
         url: >-
-          {{ controller_hostname }}/api/controller/v2/job_templates/
-          ?name={{ item.1.resource_name | urlencode }}
-          &organization__name={{ rbac_config.organization.name | urlencode }}
+          {{
+            controller_hostname
+            ~ '/api/controller/v2/job_templates/?name='
+            ~ (item.1.resource_name | urlencode)
+            ~ '&organization__name='
+            ~ (rbac_config.organization.name | urlencode)
+          }}
         method: GET
         headers:
           Authorization: Bearer {{ controller_token }}
