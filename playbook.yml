@@ -71,6 +71,16 @@
         aap_token: "{{ controller_token }}"
         aap_validate_certs: "{{ controller_validate_certs }}"
       loop: "{{ rbac_config.teams | default([]) }}"
+      register: team_results
+
+    - name: Index teams by name
+      ansible.builtin.set_fact:
+        rbac_team_ids: >-
+          {{
+            rbac_team_ids | default({})
+            | combine({item.item.name: item.team.id | default(item.id)})
+          }}
+      loop: "{{ team_results.results | default([]) }}"
 
     - name: Validate user passwords are provided
       ansible.builtin.assert:
@@ -102,13 +112,13 @@
     - name: Assign User to Team
       ansible.platform.role_user_assignment:
         role_definition: Team Member
-        user: "{{ item.username }}"
-        object_ids: "{{ item.teams | default([]) }}"
+        user: "{{ item.0.username }}"
+        object_id: "{{ rbac_team_ids[item.1] }}"
         state: present
         aap_hostname: "{{ controller_hostname }}"
         aap_token: "{{ controller_token }}"
         aap_validate_certs: "{{ controller_validate_certs }}"
-      loop: "{{ rbac_config.users | default([]) }}"
+      loop: "{{ rbac_config.users | default([]) | subelements('teams', skip_missing=True) }}"
 
     - name: Assign Additional Role to User
       ansible.platform.role_user_assignment:
