@@ -136,7 +136,7 @@
     - name: Assign team roles on job templates
       ansible.platform.role_team_assignment:
         role_definition: "{{ item.1.role }}"
-        team: "{{ item.0.team }}"
+        team: "{{ rbac_team_ids[item.0.team] }}"
         assignment_objects:
           - name: "{{ item.1.resource_name }}"
         state: present
