@@ -387,4 +387,5 @@ rbac_config:
     - team: Platform-Engineering
       permissions:
         - resource_name: Demo Job Template
+          organization: Default
           role: JobTemplate Execute

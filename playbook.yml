@@ -141,7 +141,11 @@
             ~ '/api/controller/v2/job_templates/?name='
             ~ (item.1.resource_name | urlencode)
             ~ '&organization__name='
-            ~ (rbac_config.organization.name | urlencode)
+            ~ (
+                item.1.organization
+                | default(rbac_config.organization.name)
+                | urlencode
+              )
           }}
         method: GET
         headers:
@@ -161,7 +165,8 @@
           - item.json.results[0].summary_fields.resource.ansible_id is defined
         fail_msg: >-
           Job template lookup failed for {{ item.item.1.resource_name }} in
-          organization {{ rbac_config.organization.name }}.
+          organization
+          {{ item.item.1.organization | default(rbac_config.organization.name) }}.
           HTTP status: {{ item.status | default('unknown') }};
           matches: {{ item.json.count | default('unknown') }};
           API message: {{ item.json.detail | default(item.msg) | default('none') }}.
