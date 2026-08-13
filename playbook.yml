@@ -40,7 +40,7 @@
       }}
 
   tasks:
-    - name: "Validate AAP connection settings"
+    - name: Validate AAP connection settings
       ansible.builtin.assert:
         that:
           - controller_hostname_raw | length > 0
@@ -53,7 +53,7 @@
           Host must be a hostname or full URL, for example:
           controller.example.com or https://controller.example.com
 
-    - name: "Create org"
+    - name: Create org
       ansible.platform.organization:
         name: "{{ rbac_config.organization.name }}"
         description: "{{ rbac_config.organization.description }}"
@@ -61,7 +61,7 @@
         aap_token: "{{ controller_token }}"
         aap_validate_certs: "{{ controller_validate_certs }}"
 
-    - name: "Create Team"
+    - name: Create Team
       ansible.platform.team:
         name: "{{ item.name }}"
         organization: "{{ rbac_config.organization.name }}"
@@ -72,7 +72,7 @@
         aap_validate_certs: "{{ controller_validate_certs }}"
       loop: "{{ rbac_config.teams | default([]) }}"
 
-    - name: "Validate user passwords are provided"
+    - name: Validate user passwords are provided
       ansible.builtin.assert:
         that:
           - (item.password | default(rbac_default_password, true) | string | trim | length) > 0
@@ -83,7 +83,7 @@
       loop: "{{ rbac_config.users | default([]) }}"
       no_log: true
 
-    - name: "Create User"
+    - name: Create User
       ansible.platform.user:
         username: "{{ item.username }}"
         password: "{{ item.password | default(rbac_default_password, true) }}"
@@ -99,9 +99,9 @@
       register: users_results
       no_log: true
 
-    - name: "Assign User to Team"
+    - name: Assign User to Team
       ansible.platform.role_user_assignment:
-        role_definition: "Team Member"
+        role_definition: Team Member
         user: "{{ item.username }}"
         object_ids: "{{ item.teams | default([]) }}"
         state: present
@@ -110,7 +110,7 @@
         aap_validate_certs: "{{ controller_validate_certs }}"
       loop: "{{ rbac_config.users | default([]) }}"
 
-    - name: "Assign Additional Role to User"
+    - name: Assign Additional Role to User
       ansible.platform.role_user_assignment:
         role_definition: "{{ item.1.role }}"
         user: "{{ item.0.username }}"
@@ -122,8 +122,8 @@
         aap_validate_certs: "{{ controller_validate_certs }}"
       loop: "{{ rbac_config.users | default([]) | subelements('roles', skip_missing=True) }}"
 
-    - name: "Assign team roles on job templates"
-      ansible.platform.role_team_assignment:
+    - name: Assign team roles on job templates
+      ansible.eda.role_team_assignment:
         role_definition: "{{ item.1.role }}"
         team: "{{ item.0.team }}"
         assignment_objects:
