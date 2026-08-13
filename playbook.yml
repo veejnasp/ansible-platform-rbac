@@ -123,7 +123,7 @@
       loop: "{{ rbac_config.users | default([]) | subelements('roles', skip_missing=True) }}"
 
     - name: Assign team roles on job templates
-      ansible.eda.role_team_assignment:
+      ansible.platform.role_team_assignment:
         role_definition: "{{ item.1.role }}"
         team: "{{ item.0.team }}"
         assignment_objects:
