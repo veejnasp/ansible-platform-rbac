@@ -133,32 +133,47 @@
         aap_validate_certs: "{{ controller_validate_certs }}"
       loop: "{{ rbac_config.users | default([]) | subelements('roles', skip_missing=True) }}"
 
+    - name: Query job templates by name
+      ansible.builtin.uri:
+        url: >-
+          {{ controller_hostname }}/api/controller/v2/job_templates/
+          ?name={{ item.1.resource_name | urlencode }}
+          &organization__name={{ rbac_config.organization.name | urlencode }}
+        method: GET
+        headers:
+          Authorization: Bearer {{ controller_token }}
+        return_content: true
+        validate_certs: "{{ controller_validate_certs }}"
+      register: job_template_results
+      loop: "{{ rbac_config.team_resource_roles | default([]) | subelements('permissions', skip_missing=True) }}"
+      failed_when: false
+      no_log: true
+
+    - name: Validate job template lookup
+      ansible.builtin.assert:
+        that:
+          - item.status | default(0) == 200
+          - item.json.count | default(0) == 1
+          - item.json.results[0].summary_fields.resource.ansible_id is defined
+        fail_msg: >-
+          Job template lookup failed for {{ item.item.1.resource_name }} in
+          organization {{ rbac_config.organization.name }}.
+          HTTP status: {{ item.status | default('unknown') }};
+          matches: {{ item.json.count | default('unknown') }};
+          API message: {{ item.json.detail | default(item.msg) | default('none') }}.
+      loop: "{{ job_template_results.results | default([]) }}"
+
     - name: Index job templates by name
       ansible.builtin.set_fact:
         rbac_job_template_ansible_ids: >-
           {{
             rbac_job_template_ansible_ids | default({})
             | combine({
-                item.1.resource_name: (
-                  query(
-                    'ansible.platform.gateway_api',
-                    'api/controller/v2/job_templates/',
-                    query_params={
-                      'name': item.1.resource_name,
-                      'organization__name': rbac_config.organization.name
-                    },
-                    host=controller_hostname,
-                    oauth_token=controller_token,
-                    verify_ssl=controller_validate_certs,
-                    expect_one=true,
-                    return_objects=true
-                  )
-                  | first
-                ).summary_fields.resource.ansible_id
+                item.item.1.resource_name:
+                  item.json.results[0].summary_fields.resource.ansible_id
               })
           }}
-      loop: "{{ rbac_config.team_resource_roles | default([]) | subelements('permissions', skip_missing=True) }}"
-      no_log: true
+      loop: "{{ job_template_results.results | default([]) }}"
 
     - name: Assign team roles on job templates
       ansible.platform.role_team_assignment:
