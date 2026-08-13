@@ -133,12 +133,39 @@
         aap_validate_certs: "{{ controller_validate_certs }}"
       loop: "{{ rbac_config.users | default([]) | subelements('roles', skip_missing=True) }}"
 
+    - name: Index job templates by name
+      ansible.builtin.set_fact:
+        rbac_job_template_ansible_ids: >-
+          {{
+            rbac_job_template_ansible_ids | default({})
+            | combine({
+                item.1.resource_name: (
+                  query(
+                    'ansible.platform.gateway_api',
+                    'api/controller/v2/job_templates/',
+                    query_params={
+                      'name': item.1.resource_name,
+                      'organization__name': rbac_config.organization.name
+                    },
+                    host=controller_hostname,
+                    oauth_token=controller_token,
+                    verify_ssl=controller_validate_certs,
+                    expect_one=true,
+                    return_objects=true
+                  )
+                  | first
+                ).summary_fields.resource.ansible_id
+              })
+          }}
+      loop: "{{ rbac_config.team_resource_roles | default([]) | subelements('permissions', skip_missing=True) }}"
+      no_log: true
+
     - name: Assign team roles on job templates
       ansible.platform.role_team_assignment:
         role_definition: "{{ item.1.role }}"
         team: "{{ rbac_team_ids[item.0.team] }}"
         assignment_objects:
-          - name: "{{ item.1.resource_name }}"
+          - object_ansible_id: "{{ rbac_job_template_ansible_ids[item.1.resource_name] }}"
         state: present
         aap_hostname: "{{ controller_hostname }}"
         aap_token: "{{ controller_token }}"
