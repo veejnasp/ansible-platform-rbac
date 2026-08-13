@@ -162,7 +162,7 @@
         that:
           - item.status | default(0) == 200
           - item.json.count | default(0) == 1
-          - item.json.results[0].summary_fields.resource.ansible_id is defined
+          - item.json.results[0].id is defined
         fail_msg: >-
           Job template lookup failed for {{ item.item.1.resource_name }} in
           organization
@@ -174,12 +174,12 @@
 
     - name: Index job templates by name
       ansible.builtin.set_fact:
-        rbac_job_template_ansible_ids: >-
+        rbac_job_template_ids: >-
           {{
-            rbac_job_template_ansible_ids | default({})
+            rbac_job_template_ids | default({})
             | combine({
                 item.item.1.resource_name:
-                  item.json.results[0].summary_fields.resource.ansible_id
+                  item.json.results[0].id
               })
           }}
       loop: "{{ job_template_results.results | default([]) }}"
@@ -189,7 +189,7 @@
         role_definition: "{{ item.1.role }}"
         team: "{{ rbac_team_ids[item.0.team] }}"
         assignment_objects:
-          - object_ansible_id: "{{ rbac_job_template_ansible_ids[item.1.resource_name] }}"
+          - object_id: "{{ rbac_job_template_ids[item.1.resource_name] }}"
         state: present
         aap_hostname: "{{ controller_hostname }}"
         aap_token: "{{ controller_token }}"
