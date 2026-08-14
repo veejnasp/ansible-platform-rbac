@@ -18,10 +18,10 @@ rbac_config:
       organization: Baggage Services 2
 
   users:
-    - username: aubrey.trotter
-      email: aubrey.trotter@aa.com
-      first_name: Aubrey
-      last_name: Trotter
+    - username: michael.morris
+      email: michael.morris@aa.com
+      first_name: Michael
+      last_name: Morris
       password: "{{ rbac_default_password }}"
       teams:
         - Platform-Engineering
